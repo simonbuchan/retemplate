@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es2017",
+    "strict": true,
+    "lib": ["es2017", "dom", "dom.iterable"],
+    "types": []
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

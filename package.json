@@ -1,0 +1,27 @@
+{
+  "name": "retemplate",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd examples/hello-world && webpack-dev-server --mode development"
+  },
+  "main": "./lib/index.js",
+  "types": "./src/index.ts",
+  "devDependencies": {
+    "@types/node": "^9.4.6",
+    "@babel/core": "7.0.0-beta.40",
+    "@babel/cli": "7.0.0-beta.40",
+    "@babel/preset-env": "7.0.0-beta.40",
+    "@babel/preset-typescript": "7.0.0-beta.40",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.40",
+    "babel-loader": "8.0.0-beta.2",
+    "prettier": "^1.11.1",
+    "rxjs": "^5.5.6",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.10",
+    "webpack-dev-server": "^3.1.0"
+  },
+  "peerDependencies": {
+    "rxjs": "^5.5.6"
+  }
+}
