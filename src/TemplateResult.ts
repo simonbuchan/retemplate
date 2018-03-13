@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Subscribable } from 'rxjs/Observable';
+import { Subscribable } from './Subscribable';
 
 export type PrimitivePartValue = undefined | null | false | number | string;
 export type ItemPartValue = PrimitivePartValue | TemplateResult | Node;
@@ -10,7 +9,6 @@ export interface IterablePartValue extends Iterable<SyncPartValue> {}
 
 export type AsyncPartValue =
   | PromiseLike<SyncPartValue>
-  | Observable<SyncPartValue>
   | Subscribable<SyncPartValue>;
 
 export type PartValue = SyncPartValue | AsyncPartValue;

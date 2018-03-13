@@ -1,4 +1,4 @@
-import { ItemResolvedValue } from './ResolvedValue';
+import { ResolvedValue } from './ValueResolver';
 
 export interface NodeSlotTarget {
   readonly type: 'node';
@@ -6,10 +6,7 @@ export interface NodeSlotTarget {
   readonly endNode: Node;
 }
 
-export function nodeApplyValues(
-  part: NodeSlotTarget,
-  resolved: ItemResolvedValue[],
-) {
+export function nodeApplyValues(part: NodeSlotTarget, resolved: ResolvedValue) {
   let node = part.startNode.nextSibling!;
   const endNode = part.endNode;
   const container = node.parentNode!;

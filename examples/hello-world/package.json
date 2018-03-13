@@ -1,0 +1,9 @@
+{
+  "name": "retemplate-examples-hello-world",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "retemplate": "link:../../",
+    "rxjs": "^5.5.7"
+  }
+}

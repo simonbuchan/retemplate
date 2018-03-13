@@ -1,12 +1,15 @@
-import * as Rx from 'rxjs';
-import { html, render } from '../../../src/index';
+import { interval } from 'rxjs/observable/interval';
+import { zip } from 'rxjs/observable/zip';
+import * as op from 'rxjs/operators';
+import { html, render } from 'retemplate';
 
 const name = 'Simon';
 
-const now$ = Rx.Observable.interval(1000)
-  .startWith(0)
-  .map(() => new Date().toString())
-  .do(console.log);
+const now$ = interval(1000).pipe(
+  op.startWith(0),
+  op.map(() => new Date().toString()),
+  op.tap(console.log),
+);
 
 const greeting = html`
 <h2>Hello, ${name}!</h2>
@@ -17,13 +20,14 @@ const showTime = html`
 `;
 
 const items = [greeting, showTime];
-const item$ = Rx.Observable.interval(5000)
-  .startWith(-1)
-  .map(index => items[(index + 1) % 2]);
+const item$ = interval(5000).pipe(
+  op.startWith(-1),
+  op.map(index => items[(index + 1) % 2]),
+);
 
-const example$ = Rx.Observable.zip(
+const example$ = zip(
   item$,
-  Rx.Observable.interval(5000).startWith(0),
+  interval(5000).pipe(op.startWith(0)),
   x => x,
 );
 

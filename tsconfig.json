@@ -5,6 +5,7 @@
     "moduleResolution": "node",
     "target": "es2017",
     "strict": true,
+    "strictFunctionTypes": false,
     "lib": ["es2017", "dom", "dom.iterable"],
     "types": []
   },

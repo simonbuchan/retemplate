@@ -1,24 +1,9 @@
-const Path = require('path');
-
+const config = require('retemplate/webpack.base');
 module.exports = {
-  output: {
-    devtoolModuleFilenameTemplate(module) {
-      return 'file:///' + Path.resolve(module.absoluteResourcePath).replace(/\\/g, '/');
-    },
-  },
-  devtool: 'module-source-maps',
+  ...config,
+  context: __dirname,
   resolve: {
-    extensions: ['.ts', '.js'],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        loader: 'babel-loader',
-        options: {
-          envName: 'webpack',
-        },
-      },
-    ],
+    ...config.resolve,
+    alias: require('rxjs/_esm2015/path-mapping')(),
   }
 };

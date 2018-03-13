@@ -1,4 +1,3 @@
-import { AnonymousSubscription } from 'rxjs/Subscription';
 import {
   attributeTemplateApplyValues,
   AttributeTemplateSlotTarget,
@@ -7,13 +6,10 @@ import {
 } from './AttributeSlotTarget';
 import { cleanupInstance, update } from './Instance';
 import { nodeApplyValues, NodeSlotTarget } from './NodeSlotTarget';
-import {
-  ItemResolvedValue,
-  resolvedEmpty,
-  resolveValue,
-} from './ResolvedValue';
+import { AnonymousSubscription } from './Subscribable';
 import { createInstance, Template } from './Template';
 import { PartValue } from './TemplateResult';
+import { getValueResolver, resolvedEmpty, ResolvedValue } from './ValueResolver';
 
 export interface InstanceSlot {
   readonly template: Template;
@@ -24,7 +20,7 @@ export interface InstanceSlot {
     | AttributeTemplateSlotTarget;
   value: PartValue;
   subscription: null | AnonymousSubscription;
-  resolved: ItemResolvedValue[];
+  resolved: ResolvedValue;
 }
 
 export function updateSlot(slot: InstanceSlot, value: PartValue) {
@@ -35,7 +31,7 @@ export function updateSlot(slot: InstanceSlot, value: PartValue) {
   }
   cleanupSlot(slot);
   slot.value = value;
-  slot.subscription = resolveValue(value).subscribe(resolved => {
+  slot.subscription = getValueResolver(value).subscribe(resolved => {
     const oldResolved = slot.resolved;
     slot.resolved = resolved;
 

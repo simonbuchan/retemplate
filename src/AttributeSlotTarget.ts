@@ -1,4 +1,4 @@
-import { ItemResolvedValue, ResolvedText } from './ResolvedValue';
+import { ResolvedText, ResolvedValue } from './ValueResolver';
 
 export interface AttributeValueSlotTarget {
   readonly type: 'attribute-value';
@@ -8,7 +8,7 @@ export interface AttributeValueSlotTarget {
 
 export function attributeValueApplyValues(
   slotTarget: AttributeValueSlotTarget,
-  resolved: ItemResolvedValue[],
+  resolved: ResolvedValue,
 ) {
   const attributeValue = resolved
     .filter(item => item.type === 'text')
@@ -26,7 +26,7 @@ export interface AttributeTemplateSlotTarget {
 
 export function attributeTemplateApplyValues(
   slotTarget: AttributeTemplateSlotTarget,
-  resolved: ItemResolvedValue[],
+  resolved: ResolvedValue,
 ) {
   const size = slotTarget.strings.length - 1;
   const strings = [];
